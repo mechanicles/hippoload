@@ -53,4 +53,13 @@ describe Hippoload::Hippo do
     end
 
   end
+
+  describe "Hippo#becomes_crazy" do
+    it "should return httperf raw output" do
+      hippo = Hippoload::Hippo.new(advanced_conf)
+      hippo.becomes_crazy
+      hippo.becomes_crazy.inspect.should include('httperf')
+    end
+  end
+
 end

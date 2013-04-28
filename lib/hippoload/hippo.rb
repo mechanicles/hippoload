@@ -1,5 +1,5 @@
 module Hippoload
-  class Hippo # Hippo acts as httperf
+  class Hippo # Hippo acts as httperf but with hippo style :)
 
     attr_reader :connections, :rate, :server, :port, :uri, :connections_and_rates
 
@@ -15,7 +15,20 @@ module Hippoload
     end
 
     def attack
+      set_connections if !connections.nil?
+      set_rate if !rate.nil?
       %x(httperf --num-conns=#{connections} --rate=#{rate} --server=#{server} --port=#{port} --uri="#{uri}")
+    end
+
+    def becomes_crazy
+      raw_outputs = {}
+      connections_and_rates.each do |cr|
+        @connections = cr[:connections]
+        @rate = cr[:rate]
+        raw_outputs
+      end
+
+      raw_outputs[:uri]
     end
 
     private
@@ -29,6 +42,14 @@ module Hippoload
         { :connections => 700,  :rate =>  70 },
         { :connections => 1000, :rate => 100 }
       ] if (!connections.nil? or !rate.nil?) && !connections_and_rates.nil?
+    end
+
+    def set_connections
+      @connections = connections ||  default_connections_and_rates.first[:connections]
+    end
+
+    def set_rate
+      @rate = rate ||  default_connections_and_rates.first[:rate]
     end
 
     def raise_error_if_wrong_conf
