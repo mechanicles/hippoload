@@ -1,6 +1,14 @@
 module Hippoload
   class Hippo # Hippo acts as httperf but with hippo style :)
 
+    # Currently Hippoload supports only -----------------------------
+    # 'get' method of Httperf
+    # --num-conns
+    # --rate
+    # --server
+    # --port
+    # --uri
+
     attr_reader :connections, :rate, :server, :port, :uri, :connections_and_rates
 
     def initialize(conf)
@@ -58,6 +66,7 @@ module Hippoload
         raise "You can not assign (:connections, :rate) at same with :connections_and_rates attributes. Either assign (:connections, :rate) or assign :connections_and_rates attribute"
       end
     end
+
   end
 end
 

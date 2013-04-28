@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Hippoload::VERSION
   gem.authors       = ["Santosh Wadghule"]
   gem.email         = ["santosh.wadghule@gmail.com"]
-  gem.description   = %q{Ruby wrapper for httperf}
-  gem.summary       = %q{It also parses the httperf output and converts parsed data into CSVs files}
+  gem.description   = %q{Basic Ruby wrapper for httperf}
+  gem.summary       = %q{Ruby wrapper/parser for httperf}
   gem.homepage      = ""
 
   gem.add_development_dependency "rspec"

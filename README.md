@@ -1,6 +1,8 @@
 # Hippoload
 
-TODO: Write a gem description
+Basic Ruby Wrapper for Httperf
+
+It also parses the httperf output
 
 ## Installation
 
