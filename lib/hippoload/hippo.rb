@@ -25,10 +25,10 @@ module Hippoload
       connections_and_rates.each do |cr|
         @connections = cr[:connections]
         @rate = cr[:rate]
-        raw_outputs
+        raw_outputs["#{uri}"] = attack
       end
 
-      raw_outputs[:uri]
+      raw_outputs
     end
 
     private
