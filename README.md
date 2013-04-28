@@ -24,7 +24,6 @@ Or install it yourself as:
 
 require "hippoload"
 
-
 # for single connections and rate
 
 conf = {:connections => 100, :rate => 10, :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1" }
@@ -40,7 +39,8 @@ hippo_parser.parse(raw_output)
 # => {:total_conenctions=>"100", :duration=>"9.948", :connections_per_second=>"10.1", :min_ms_per_connection=>"33.8", :avg_ms_per_connection=>"61.5", :max_ms_per_connection=>"164.2", :median_ms_per_connection=>"49.5", :stddev_ms_per_connection=>"22.0", :request_rate_per_second=>"10.1", :min_replies_per_second=>"10.0", :avg_replies_per_second=>"10.0", :max_replies_per_second=>"10.0", :stddev_replies_per_second=>"0.0", :samples=>"1", :client_timeout_errors=>"0", :connections_reset_errors=>"0"}
 
 # for connections and rates list
- conf = {:connections_and_rates =>  [{:connections => 100, :rate => 10}, {:connections => 200, :rate => 20}], :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef
+
+conf = {:connections_and_rates =>  [{:connections => 100, :rate => 10}, {:connections => 200, :rate => 20}], :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef
 
 hippo = Hippoload::Hippo.new(conf)
 
