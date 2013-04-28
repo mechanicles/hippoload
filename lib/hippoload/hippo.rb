@@ -66,7 +66,6 @@ module Hippoload
         raise "You can not assign (:connections, :rate) at same with :connections_and_rates attributes. Either assign (:connections, :rate) or assign :connections_and_rates attribute"
       end
     end
-
   end
 end
 

@@ -46,12 +46,10 @@ describe Hippoload::Hippo do
   end
 
   describe "Hippo#attack" do
-
     it "should return httperf raw output" do
       hippo = Hippoload::Hippo.new(basic_conf)
       hippo.attack.inspect.should include('httperf')
     end
-
   end
 
   describe "Hippo#becomes_crazy" do
@@ -61,5 +59,4 @@ describe Hippoload::Hippo do
       hippo.becomes_crazy.inspect.should include('httperf')
     end
   end
-
 end

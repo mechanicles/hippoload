@@ -39,7 +39,5 @@ module Hippoload
     def formatted_output(httperf_raw_output)
       httperf_raw_output.inspect.split('\n').join(' ')
     end
-
   end
-
 end
