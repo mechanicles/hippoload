@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["santosh.wadghule@gmail.com"]
   gem.description   = %q{Basic Ruby wrapper for httperf}
   gem.summary       = %q{Ruby wrapper/parser for httperf}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/mechanicles/hippoload"
 
   gem.add_development_dependency "rspec"
   gem.add_dependency "activesupport"
