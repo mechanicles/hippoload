@@ -4,6 +4,7 @@ Basic Ruby wrapper/parser for Httperf
 
 Currently it supports 'get' method of httperf.
 
+> Httperf is a tool for measuring web server performance. It provides a flexible facility for generating various HTTP workloads and for measuring server performance.
 
 ## Installation
 
@@ -26,6 +27,19 @@ require "hippoload"
 
 # for single connections and rate
 
+# Conf arguments: (Note: Currently it supports only these arguments. New arguments are coming soon...)
+
+# conf = {
+#   :connections => '300',
+#   :rate => '30',
+#   :server => 'mysite.com' # by default it's 'localhost',
+#   :port => '8080' # by default it's '3000',
+#   :connections_and_rates => [{:connections => 1000, :rate}, {:connections => 2000, :rate => 200}]
+#   :uri => '/posts'
+# }
+
+# Note: Please assign eigther (:connections and :rate) or (:connections_and_rates) at time
+
 conf = {:connections => 100, :rate => 10, :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1" }
 
 hippo = Hippoload::Hippo.new(conf)
@@ -47,6 +61,7 @@ hippo = Hippoload::Hippo.new(conf)
 hippo.becomes_crazy
 
 # connections list wise => {"100-10-/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1"=>"httperf --client=0/1 --server=localhost --port=3000 --uri=/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1 --rate=10 --send-buffer=4096 --recv-buffer=16384 --num-conns=100 --num-calls=1\nMaximum connect burst length: 1\n\nTotal: connections 100 requests 100 replies 100 test-duration 9.951 s\n\nConnection rate: 10.0 conn/s (99.5 ms/conn, <=5 concurrent connections)\nConnection time [ms]: min 34.3 avg 69.5 max 400.1 median 50.5 stddev 57.6\nConnection time [ms]: connect 0.1\nConnection length [replies/conn]: 1.000\n\nRequest rate: 10.0 req/s (99.5 ms/req)\nRequest size [B]: 120.0\n\nReply rate [replies/s]: min 10.0 avg 10.0 max 10.0 stddev 0.0 (1 samples)\nReply time [ms]: response 68.9 transfer 0.5\nReply size [B]: header 642.0 content 4901.0 footer 0.0 (total 5543.0)\nReply status: 1xx=0 2xx=100 3xx=0 4xx=0 5xx=0\n\nCPU time [s]: user 2.14 system 7.81 (user 21.5% system 78.5% total 99.9%)\nNet I/O: 55.6 KB/s (0.5*10^6 bps)\n\nErrors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0\nErrors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0\n", "150-15-/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1"=>"httperf --client=0/1 --server=localhost --port=3000 --uri=/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1 --rate=15 --send-buffer=4096 --recv-buffer=16384 --num-conns=150 --num-calls=1\nMaximum connect burst length: 1\n\nTotal: connections 150 requests 150 replies 150 test-duration 9.988 s\n\nConnection rate: 15.0 conn/s (66.6 ms/conn, <=7 concurrent connections)\nConnection time [ms]: min 34.3 avg 92.1 max 415.4 median 71.5 stddev 68.8\nConnection time [ms]: connect 0.1\nConnection length [replies/conn]: 1.000\n\nRequest rate: 15.0 req/s (66.6 ms/req)\nRequest size [B]: 120.0\n\nReply rate [replies/s]: min 15.0 avg 15.0 max 15.0 stddev 0.0 (1 samples)\nReply time [ms]: response 91.9 transfer 0.0\nReply size [B]: header 642.0 content 4901.0 footer 0.0 (total 5543.0)\nReply status: 1xx=0 2xx=150 3xx=0 4xx=0 5xx=0\n\nCPU time [s]: user 1.76 system 8.21 (user 17.6% system 82.2% total 99.9%)\nNet I/O: 83.1 KB/s (0.7*10^6 bps)\n\nErrors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0\nErrors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0\n"}
+
 ```
 ## Contributing
 
