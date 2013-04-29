@@ -34,11 +34,11 @@ require "hippoload"
 #   :rate => '30',
 #   :server => 'mysite.com' # by default it's 'localhost',
 #   :port => '8080' # by default it's '3000',
-#   :connections_and_rates => [{:connections => 1000, :rate}, {:connections => 2000, :rate => 200}]
+#   :connections_and_rates => [{:connections => 1000, :rate => 10}, {:connections => 2000, :rate => 200}]
 #   :uri => '/posts'
 # }
 
-# Note: Please assign eigther (:connections and :rate) or (:connections_and_rates) at time
+# Note: Please assign either (:connections and :rate) or (:connections_and_rates) at a time
 
 conf = {:connections => 100, :rate => 10, :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1" }
 
