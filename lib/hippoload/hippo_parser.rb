@@ -1,6 +1,8 @@
 module Hippoload
   class HippoParser
 
+    # Inspired by https://github.com/wjessop/httperf-output-parser/blob/master/lib/httperf-output-parser.rb
+
     DATATYPES = %w(
                 total_conenctions
                 duration

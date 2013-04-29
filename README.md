@@ -55,3 +55,10 @@ hippo.becomes_crazy
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Other similar Ruby gems/libraries
+
+1. [httperfrb]: https://github.com/rubyops/httperfrb ""
+2. [stresser]: https://github.com/moviepilot/stresser ""
+3. [httperf-output-parser]: https://github.com/wjessop/httperf-output-parser ""
+
