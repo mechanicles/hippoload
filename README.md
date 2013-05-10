@@ -54,7 +54,7 @@ hippo_parser.parse(raw_output)
 
 # for connections and rates list
 
-conf = {:connections_and_rates => [{:connections => 100, :rate => 10}, {:connections => 200, :rate => 20}], :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef
+conf = {:connections_and_rates => [{:connections => 100, :rate => 10}, {:connections => 200, :rate => 20}], :uri => "/api/v1/entities?app_token=ef6baaed0d294f8f54eef80aeb8a4ee1"}
 
 hippo = Hippoload::Hippo.new(conf)
 
