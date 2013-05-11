@@ -30,7 +30,7 @@ module Hippoload
     end
 
     def attack
-      raise "Httperf not installed on your machine" unless httperf_installed?
+      raise "Httperf is not installed on your machine" unless httperf_installed?
       set_connections if @connections.nil?
       set_rate if @rate.nil?
       %x(httperf --num-conns=#{@connections} --rate=#{@rate} --server=#{@server} --port=#{@port} --uri="#{@uri}")
@@ -50,8 +50,8 @@ module Hippoload
 
     class << self
       def wrong_conf_message
-        "You are missing :connections or :rate arrtibute or may be
-        Either assign (:connections, :rate) or assign :connections_and_rates attribute"
+        "You are missing :connections or :rate arrtibute or may be,
+        either assign (:connections, :rate) or assign :connections_and_rates attribute"
       end
     end
 
