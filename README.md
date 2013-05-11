@@ -2,9 +2,10 @@
 
 Basic Ruby wrapper/parser for Httperf
 
-Currently it supports 'get' method of httperf.
 
 > Httperf is a tool for measuring web server performance. It provides a flexible facility for generating various HTTP workloads and for measuring server performance.
+
+Currently it supports 'get' method of httperf.
 
 ## Installation
 

@@ -11,9 +11,14 @@ describe Hippoload::Hippo do
       :uri => "/posts",
       :connections_and_rates => [{ :connections => 100, :rate => 10 }]
     }
+
   end
 
+  let(:wrong_arg) {['worng_arg']}
+
   describe "Hippo#attributes_methods" do
+
+    # These tests are tested using real database with the httperf tool
 
     it "should have attributes reader" do
       hippo = Hippoload::Hippo.new(basic_conf)
@@ -27,6 +32,10 @@ describe Hippoload::Hippo do
 
     it "should raise error if wrong conf passed" do
       expect { Hippoload::Hippo.new(wrong_conf) }.to raise_error
+    end
+
+    it "should raise error if wrong argument passed" do
+      expect { Hippoload::Hippo.new(wrong_arg) }.to raise_error
     end
 
     it "should not raise error if correct conf passed" do

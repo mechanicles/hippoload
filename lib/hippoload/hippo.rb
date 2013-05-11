@@ -12,19 +12,27 @@ module Hippoload
     attr_reader :connections, :rate, :server, :port, :uri, :connections_and_rates
 
     def initialize(conf)
+
+      raise ArgumentError, 'Argument is not hash' unless conf.is_a? Hash
+
       @connections = conf[:connections]
       @rate = conf[:rate]
       @server = conf[:server] || 'localhost'
       @port = conf[:port] || '3000'
       @uri = conf[:uri]
-      @connections_and_rates = conf[:connections_and_rates] || default_connections_and_rates
+      @connections_and_rates = if !conf[:connections_and_rates].nil?
+                                 conf[:connections_and_rates]
+                               elsif @connections.nil? && @rate.nil?
+                                 default_connections_and_rates
+                               end
 
-      raise_error_if_wrong_conf
+      raise Hippo.wrong_conf_message if wrong_configuration
     end
 
     def attack
-      set_connections if !@connections.nil?
-      set_rate if !@rate.nil?
+      raise "Httperf not installed on your machine" unless httperf_installed?
+      set_connections if @connections.nil?
+      set_rate if @rate.nil?
       %x(httperf --num-conns=#{@connections} --rate=#{@rate} --server=#{@server} --port=#{@port} --uri="#{@uri}")
     end
 
@@ -40,6 +48,13 @@ module Hippoload
       raw_outputs
     end
 
+    class << self
+      def wrong_conf_message
+        "You are missing :connections or :rate arrtibute or may be
+        Either assign (:connections, :rate) or assign :connections_and_rates attribute"
+      end
+    end
+
     private
 
     def default_connections_and_rates
@@ -50,21 +65,29 @@ module Hippoload
         { :connections => 500,  :rate =>  50 },
         { :connections => 700,  :rate =>  70 },
         { :connections => 1000, :rate => 100 }
-      ] if (!@connections.nil? or !@rate.nil?) && !@connections_and_rates.nil?
+      ]
     end
 
     def set_connections
-      @connections = @connections ||  default_connections_and_rates.first[:connections]
+      @connections ||=  default_connections_and_rates[0][:connections]
+      puts "--" * 50
+      puts "NOTE: You haven't passed the no of connections, so setting default value (#{@connections}) for the connections."
+      puts "--" * 50
     end
 
     def set_rate
-      @rate = @rate ||  default_connections_and_rates.first[:rate]
+      @rate ||=  default_connections_and_rates[0][:rate]
+      puts "--" * 50
+      puts "NOTE: You haven't passed the value for rate, so setting default value (#{@rate}) for the rate."
+      puts "--" * 50
     end
 
-    def raise_error_if_wrong_conf
-      if (!@connections.nil? || !@rate.nil?) && !@connections_and_rates.nil?
-        raise "You can not assign (:connections, :rate) at same with :connections_and_rates attributes. Either assign (:connections, :rate) or assign :connections_and_rates attribute"
-      end
+    def wrong_configuration
+      (!@connections.nil? || !@rate.nil?) && !@connections_and_rates.nil?
+    end
+
+    def httperf_installed?
+      system("which httperf > /dev/null 2>&1")
     end
   end
 end
